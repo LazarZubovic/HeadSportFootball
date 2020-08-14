@@ -14,7 +14,7 @@ pg.key.set_repeat(10, 10) #podešavanje događaja tastature
 (lopta_x, lopta_y) = (sirina / 2, 50)
 r = 5
 g = 9.81
-vx = random.randint(0, 15)
+vx = random.randint(-15, 15)  #početna brzina loptice, pre nego što krene poen je nasumična na bilo koju stranu
 
 def sudar_igrac_igrac():
     if math.sqrt((igrac_x - igrac_2_x)**2 + (igrac_y - igrac_2_y)**2):
@@ -28,7 +28,7 @@ def sudar_igrac_2_lopta():
 def novi_frejm():
     vy = vy + g / 20
     lopta_x += vx / 20
-    lopta_y += vy / 20
+    lopta_y += vy  / 20
     if lopta_x - r < 0 or lopta_x + r > sirina:
         vx = -vx * 0.75
     if lopta_y - r < 0 or lopta_y + r > visina:
@@ -48,7 +48,7 @@ def obradi_dogadjaj():
     global igrac_2_y
     if dogadjaj.type == pg.KEYDWON:   # pritisnut je taster na tastaturi
         if  dogadjaj.key == pg.LEFT:
-            igrac_x -= 2                    # obrađujemo kretanje igrača levo - desno
+            igrac_x -= 2                    # obrađujemo kretanje oba igrača levo - desno
         elif dogadjaj.key == pg.RIGHT:
             igrac_x += 2
         elif dogadjaj.key == pg.K_a:
@@ -56,8 +56,6 @@ def obradi_dogadjaj():
         elif dogadjaj.key == pg.K_d:
             igrac_2_x += 2
             return True
-
-
 
 
 sat = pg.time.Clock()
